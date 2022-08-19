@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { View, Text, Button, TouchableOpacity, TextInput, Alert } from 'react-native'
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-
+// import { db } from "../db/db";
 export const CheckListForm = () => {
     const [checkedTask, setCheckedTask] = useState(false)
     const [text, onChangeText] = useState("")
@@ -11,31 +11,31 @@ export const CheckListForm = () => {
         return !value;
     }
 
-    // const submitTheDay = () => {
-    //     if (!checkedTask && text) {
-    //         Alert.alert("You Did it! ")
-    //     } else {
-    //         Alert.alert("finish filling this form out")
-    //     }
-    // }
-
     const submitTheDay = () => {
+        if (!checkedTask && text) {
+            Alert.alert("You Did it! ")
+        } else {
+            Alert.alert("finish filling this form out")
+        }
+    }
+
+    // const submitTheDay = () => {
 
 
-        db.collection("daily-check-list")
-            .add({
-                checkedTask: checkedTask,
-                text: text,
-            })
-            .then(() => {
-                Alert.alert("Your Day has been Logged!");
-            })
-            .catch((error) => {
-                alert(error.message);
-            });
-        setCheckedTask(false);
-        onChangeText("");
-    };
+        // db.collection("daily-check-list")
+        //     .add({
+        //         checkedTask: checkedTask,
+        //         text: text,
+        //     })
+        //     .then(() => {
+        //         Alert.alert("Your Day has been Logged!");
+        //     })
+        //     .catch((error) => {
+        //         alert(error.message);
+        //     });
+        // setCheckedTask(false);
+        // onChangeText("");
+    // };
 
 
 
