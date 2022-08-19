@@ -1,41 +1,35 @@
 import React, { useState } from 'react'
 import { View, Text, Button, TouchableOpacity, TextInput, Alert } from 'react-native'
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-// import { db } from "../db/db";
+import {ref,set,update , onValue, remove} from "firebase/database";
+import {db}  from "../firebase";
 export const CheckListForm = () => {
+//https://react-native-form-6271c-default-rtdb.firebaseio.com/
     const [checkedTask, setCheckedTask] = useState(false)
-    const [text, onChangeText] = useState("")
+    const [dailyLog, setDailyLog] = useState("")
 
 
-    function toggle(value) {
-        return !value;
+    function toggle(checkedTask) {
+        return !checkedTask;
     }
 
-    const submitTheDay = () => {
-        if (!checkedTask && text) {
-            Alert.alert("You Did it! ")
-        } else {
-            Alert.alert("finish filling this form out")
-        }
-    }
+     const submitTheDay = () => {
+        set(ref(db, '/checklist' + dailyLog), {          
+            dailyLog: dailyLog,
+            checkedTask: !checkedTask
+          }).then(() => {
+            // Data saved successfully!
+            alert('data updated!');    
+        })  
+            .catch((error) => {
+                // The write failed...
+                alert(error);
+            });
+}
+    
+     
 
-    // const submitTheDay = () => {
 
-
-        // db.collection("daily-check-list")
-        //     .add({
-        //         checkedTask: checkedTask,
-        //         text: text,
-        //     })
-        //     .then(() => {
-        //         Alert.alert("Your Day has been Logged!");
-        //     })
-        //     .catch((error) => {
-        //         alert(error.message);
-        //     });
-        // setCheckedTask(false);
-        // onChangeText("");
-    // };
 
 
 
@@ -65,8 +59,8 @@ export const CheckListForm = () => {
                 </View>
             </View>
             <TextInput
-                onChangeText={onChangeText}
-                value={text}
+                onChangeText={(dailyLog) => {setDailyLog(dailyLog)}}
+                value={dailyLog}
                 placeholder="How was your day?"
                 style={{
                     width: "80%", height: 150,
