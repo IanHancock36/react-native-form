@@ -1,33 +1,34 @@
 import React, { useState } from 'react'
 import { View, Text, Button, TouchableOpacity, TextInput, Alert } from 'react-native'
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import {ref,set,update , onValue, remove} from "firebase/database";
-import {db}  from "../firebase";
+import { ref, set, update, onValue, remove } from "firebase/database";
+import { db } from "../firebase";
+// need to have required before you 
+// can submit could pull formik in for validation.
+
 export const CheckListForm = () => {
-//https://react-native-form-6271c-default-rtdb.firebaseio.com/
     const [checkedTask, setCheckedTask] = useState(false)
     const [dailyLog, setDailyLog] = useState("")
-
 
     function toggle(checkedTask) {
         return !checkedTask;
     }
 
-     const submitTheDay = () => {
-        set(ref(db, '/checklist' + dailyLog), {          
+    const submitTheDay = () => {
+        set(ref(db, '/checklist'), {
             dailyLog: dailyLog,
             checkedTask: !checkedTask
-          }).then(() => {
+        }).then(() => {
             // Data saved successfully!
-            alert('data updated!');    
-        })  
+            alert('data updated!');
+        })
             .catch((error) => {
                 // The write failed...
                 alert(error);
             });
-}
-    
-     
+    }
+
+
 
 
 
@@ -59,7 +60,7 @@ export const CheckListForm = () => {
                 </View>
             </View>
             <TextInput
-                onChangeText={(dailyLog) => {setDailyLog(dailyLog)}}
+                onChangeText={(dailyLog) => { setDailyLog(dailyLog) }}
                 value={dailyLog}
                 placeholder="How was your day?"
                 style={{
