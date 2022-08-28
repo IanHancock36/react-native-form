@@ -70,6 +70,7 @@ export const CheckListForm = () => {
                 }}
             />
             <Button title='Log Your Day' onPress={() => submitTheDay()} />
+            <Button title= "See Your Progress"/>
         </View>
     )
 }
