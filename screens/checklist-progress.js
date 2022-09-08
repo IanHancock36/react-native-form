@@ -1,4 +1,6 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
+import {collection, query, orderBy, onSnapshot} from "firebase/firestore"
+import {db} from './firebase'
 import { View, Text, FlatList } from 'react-native'
 
 const MarvelList = [
@@ -29,6 +31,18 @@ const MarvelList = [
 
 
 const ChecklistProgress = () => {
+  const [tasks, setTasks] = useState([])
+  
+  useEffect(() => {
+    const retrieveMyDailyLogs = query(collection(db, 'tasks'), orderBy('created', 'desc'))
+    onSnapshot(retrieveMyDailyLogs, (querySnapshot) => {
+      setTasks(querySnapshot.docs.map(doc => ({
+        id: doc.id,
+        data: doc.data()
+      })))
+    })
+  },[])
+
   const renderItem =({item})=>{
     return(
       <View style={{flexDirection:"row", marginVertical:10}}>

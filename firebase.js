@@ -2,7 +2,6 @@
 import { initializeApp } from "firebase/app";   
 import { getDatabase } from "firebase/database";
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyAVPfliC9XsKLtK_G7ia48pG5lrmOyVCZM",
   authDomain: "react-native-form-6271c.firebaseapp.com",
@@ -12,10 +11,7 @@ const firebaseConfig = {
   appId: "1:505232511545:web:9d7a47407c7911a94733e8",
 };
 
-
-
 // Initialize Firebase
-
 const app = initializeApp(firebaseConfig);    
 
 //Initialize database
