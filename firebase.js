@@ -1,16 +1,15 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAVPfliC9XsKLtK_G7ia48pG5lrmOyVCZM",
-  authDomain: "react-native-form-6271c.firebaseapp.com",
-  projectId: "react-native-form-6271c",
-  storageBucket: "react-native-form-6271c.appspot.com",
-  messagingSenderId: "505232511545",
-  appId: "1:505232511545:web:9d7a47407c7911a94733e8",
+  apiKey: "AIzaSyAh7M69UAQNuhbx-854YxTThaHNsYTNaIg",
+  authDomain: "seek-aid-35829.firebaseapp.com",
+  databaseURL: "https://seek-aid-35829-default-rtdb.firebaseio.com",
+  projectId: "seek-aid-35829",
+  storageBucket: "seek-aid-35829.appspot.com",
+  messagingSenderId: "524206447591",
+  appId: "1:524206447591:web:fa2a13339059b9e01c7b42",
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 

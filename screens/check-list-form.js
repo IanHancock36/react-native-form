@@ -8,10 +8,8 @@ import {
   Alert,
 } from "react-native";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { ref, set, update, onValue, remove } from "firebase/database";
 import { db } from "../firebase";
-// need to have required before you
-// can submit could pull formik in for validation.
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 
 export const CheckListForm = () => {
   const [checkedTask, setCheckedTask] = useState(false);
@@ -28,11 +26,11 @@ export const CheckListForm = () => {
     })
       .then(() => {
         // Data saved successfully!
-        alert("data updated!");
+        Alert.alert("data updated!");
       })
       .catch((error) => {
         // The write failed...
-        alert(error);
+        Alert.alert(error);
       });
   };
 

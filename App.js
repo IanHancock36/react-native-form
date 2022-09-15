@@ -9,10 +9,10 @@ import ChecklistProgress from './screens/checklist-progress';
 export default function App() {
   return (
     <NavigationContainer>
-    {/* <CheckListForm /> */}
+    <CheckListForm />
 
-
-    <ChecklistProgress />
+   
+    {/* <ChecklistProgress /> */}
 
     </NavigationContainer>
 
